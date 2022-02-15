@@ -20,6 +20,7 @@ public class CakeView extends SurfaceView {
     Paint wickPaint = new Paint();
     Paint balloonPaint = new Paint();
     Paint stringPaint = new Paint();
+    Paint textPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -55,7 +56,7 @@ public class CakeView extends SurfaceView {
         //Setup our palette
         cakePaint.setColor(0xFFC755B5);  //violet-red
         cakePaint.setStyle(Paint.Style.FILL);
-        frostingPaint.setColor(0xFFFFFACD);  //pale yellow
+        frostingPaint.setColor(0xFFFF00FF);  //magenta
         frostingPaint.setStyle(Paint.Style.FILL);
         candlePaint.setColor(0xFF32CD32);  //lime green
         candlePaint.setStyle(Paint.Style.FILL);
@@ -69,6 +70,8 @@ public class CakeView extends SurfaceView {
         balloonPaint.setStyle(Paint.Style.FILL);
         stringPaint.setColor(0xFFe0dab8);
         stringPaint.setStyle(Paint.Style.FILL);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(25);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -98,6 +101,7 @@ public class CakeView extends SurfaceView {
         }
 
     }
+
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -137,6 +141,14 @@ public class CakeView extends SurfaceView {
         drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
           }
         }
+        }
+        if (myCake.xClick > -1 || myCake.yClick > -1) {
+            textPaint.setColor(Color.RED);
+            textPaint.setStyle(Paint.Style.FILL);
+            textPaint.setTextSize(50.0f);
+            canvas.drawText(myCake.xClick + "," + myCake.yClick, 1700, 700, textPaint);
+        }
+
 
         //draw balloon
         if(myCake.drawBalloon) {
@@ -147,6 +159,8 @@ public class CakeView extends SurfaceView {
 
 
     }//onDraw
+
+
 
     public CakeModel getCakeModel(){
         return this.myCake;
