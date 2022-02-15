@@ -141,7 +141,7 @@ public class CakeView extends SurfaceView {
         drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
           }
         }
-        }
+
         if (myCake.xClick > -1 || myCake.yClick > -1) {
             textPaint.setColor(Color.RED);
             textPaint.setStyle(Paint.Style.FILL);

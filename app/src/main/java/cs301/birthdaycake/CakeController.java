@@ -9,8 +9,6 @@ import android.widget.SeekBar;
 public class CakeController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
     private CakeView aCakeView;
     private CakeModel aCakeModel;
-    private int xVal;
-    private int yVal;
 
     public CakeController(CakeView c){
         aCakeView = c;
@@ -53,10 +51,6 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
     public boolean onTouch(View v, MotionEvent event) {
         aCakeModel.xClick = (int) event.getX();
         aCakeModel.yClick = (int) event.getY();
-        xVal = (int)event.getX();
-        yVal = (int)event.getY();
-        aCakeModel.xClick = xVal;
-        aCakeModel.yClick = yVal;
         aCakeModel.drawBalloon = true;
         aCakeView.invalidate();
         return false;
