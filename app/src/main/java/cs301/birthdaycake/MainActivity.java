@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         SeekBar candleSeek = findViewById(R.id.seekBar);
         candleSeek.setOnSeekBarChangeListener(cakeControl);
 
+        CakeView myCake = findViewById(R.id.cakeview);
+        myCake.setOnTouchListener(cakeControl);
+
+
+
     }
     public void goodbye(View button) {
         Log.i("button", "Goodbye");

@@ -18,6 +18,8 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint = new Paint();
+    Paint stringPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -63,6 +65,10 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setColor(Color.BLUE);
+        balloonPaint.setStyle(Paint.Style.FILL);
+        stringPaint.setColor(0xFFe0dab8);
+        stringPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -124,12 +130,21 @@ public class CakeView extends SurfaceView {
 
         //Then a second cake layer
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
+
         //now candles
-if(myCake.candlesThere == true) {
-    for(int i = 1; i <= myCake.numCandles; i++){
+        if(myCake.candlesThere == true) {
+            for(int i = 1; i <= myCake.numCandles; i++){
         drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
-    }
-}
+          }
+        }
+
+        //draw balloon
+        if(myCake.drawBalloon) {
+            canvas.drawOval(myCake.xClick-75, myCake.yClick-100, myCake.xClick+75, myCake.yClick+100, balloonPaint);
+            canvas.drawRect(myCake.xClick-5, myCake.yClick+100,myCake.xClick+5, myCake.yClick+400, stringPaint);
+            canvas.drawOval(myCake.xClick-30, myCake.yClick+100, myCake.xClick+30, myCake.yClick+120, balloonPaint);
+        }
+
 
     }//onDraw
 
