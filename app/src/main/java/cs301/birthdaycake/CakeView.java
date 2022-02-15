@@ -18,6 +18,7 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint textPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -63,6 +64,8 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(25);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -92,6 +95,7 @@ public class CakeView extends SurfaceView {
         }
 
     }
+
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -125,13 +129,23 @@ public class CakeView extends SurfaceView {
         //Then a second cake layer
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
         //now candles
-if(myCake.candlesThere == true) {
-    for(int i = 1; i <= myCake.numCandles; i++){
-        drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
-    }
-}
+        if(myCake.candlesThere == true) {
+            for(int i = 1; i <= myCake.numCandles; i++){
+                drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
+            }
+        }
+        if (myCake.XCoord > -1 || myCake.YCoord > -1) {
+            Paint textPaint = new Paint();
+            textPaint.setColor(Color.RED);
+            textPaint.setStyle(Paint.Style.FILL);
+            textPaint.setTextSize(50.0f);
+            canvas.drawText(myCake.XCoord + "," + myCake.YCoord, 1700, 700, textPaint);
+        }
+
 
     }//onDraw
+
+
 
     public CakeModel getCakeModel(){
         return this.myCake;

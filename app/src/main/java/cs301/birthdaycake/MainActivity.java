@@ -3,6 +3,7 @@ package cs301.birthdaycake;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.view.View;
 import android.util.Log;
 import android.widget.Button;
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         SeekBar candleSeek = findViewById(R.id.seekBar);
         candleSeek.setOnSeekBarChangeListener(cakeControl);
+
+        CakeView cakeView = findViewById(R.id.cakeview);
+        cakeView.setOnTouchListener(cakeControl);
+
+
 
     }
     public void goodbye(View button) {
