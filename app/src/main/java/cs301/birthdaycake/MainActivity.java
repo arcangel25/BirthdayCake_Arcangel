@@ -30,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
         cvRef.setOnTouchListener(cakeControl); //fix
 
+        CakeView cakeView = findViewById(R.id.cakeview);
+        cakeView.setOnTouchListener(cakeControl);
+
+
+
     }
     public void goodbye(View button) {
         Log.i("button", "Goodbye");

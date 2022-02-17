@@ -20,7 +20,9 @@ public class CakeView extends SurfaceView {
     Paint wickPaint = new Paint();
     Paint redSquare = new Paint();
     Paint greenSquare = new Paint();
-
+    Paint balloonPaint = new Paint();
+    Paint stringPaint = new Paint();
+    Paint textPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -38,8 +40,6 @@ public class CakeView extends SurfaceView {
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
-
-
 
 
 
@@ -72,7 +72,12 @@ public class CakeView extends SurfaceView {
         redSquare.setStyle(Paint.Style.FILL);
         greenSquare.setColor(0xFF00FF00);
         greenSquare.setStyle(Paint.Style.FILL);
-
+        balloonPaint.setColor(Color.BLUE);
+        balloonPaint.setStyle(Paint.Style.FILL);
+        stringPaint.setColor(0xFFe0dab8);
+        stringPaint.setStyle(Paint.Style.FILL);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(25);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -134,19 +139,38 @@ public class CakeView extends SurfaceView {
 
         //Then a second cake layer
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
+
         //now candles
-if(myCake.candlesThere == true) {
-    for(int i = 1; i <= myCake.numCandles; i++){
+        if(myCake.candlesThere == true) {
+            for(int i = 1; i <= myCake.numCandles; i++){
         drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
 
 
     }
+          }
 
-}
+
+
         canvas.drawRect(myCake.xCoor, myCake.yCoor - 50, myCake.xCoor +50, myCake.yCoor, redSquare);
         canvas.drawRect(myCake.xCoor, myCake.yCoor + 50, myCake.xCoor + 50, myCake.yCoor, greenSquare);
         canvas.drawRect(myCake.xCoor - 50, myCake.yCoor + 50, myCake.xCoor, myCake.yCoor, redSquare);
         canvas.drawRect(myCake.xCoor - 50, myCake.yCoor - 50, myCake.xCoor, myCake.yCoor , greenSquare);
+        if (myCake.xClick > -1 || myCake.yClick > -1) {
+            textPaint.setColor(Color.RED);
+            textPaint.setStyle(Paint.Style.FILL);
+            textPaint.setTextSize(50.0f);
+            canvas.drawText(myCake.xClick + "," + myCake.yClick, 1700, 700, textPaint);
+        }
+
+
+        //draw balloon
+        if(myCake.drawBalloon) {
+            canvas.drawOval(myCake.xClick-75, myCake.yClick-100, myCake.xClick+75, myCake.yClick+100, balloonPaint);
+            canvas.drawRect(myCake.xClick-5, myCake.yClick+100,myCake.xClick+5, myCake.yClick+400, stringPaint);
+            canvas.drawOval(myCake.xClick-30, myCake.yClick+100, myCake.xClick+30, myCake.yClick+120, balloonPaint);
+        }
+
+
     }//onDraw
 
     public CakeModel getCakeModel(){

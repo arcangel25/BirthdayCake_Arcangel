@@ -55,7 +55,11 @@ public class CakeController implements View.OnClickListener, View.OnTouchListene
         yValue = (int)motionEvent.getY();
         aCakeModel.xCoor = xValue;
         aCakeModel.yCoor = yValue;
+        aCakeModel.xClick = (int) motionEvent.getX();
+        aCakeModel.yClick = (int) motionEvent.getY();
+        aCakeModel.drawBalloon = true;
         aCakeView.invalidate();
         return false;
     }
+
 }

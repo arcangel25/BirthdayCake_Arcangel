@@ -8,4 +8,7 @@ public class CakeModel {
     public int xCoor;
     public int yCoor;
     public boolean drawSquares = true;
+    public boolean drawBalloon = false;
+    public int xClick;
+    public int yClick;
 }
