@@ -18,6 +18,9 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint redSquare = new Paint();
+    Paint greenSquare = new Paint();
+
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -35,6 +38,8 @@ public class CakeView extends SurfaceView {
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
+
+
 
 
 
@@ -63,6 +68,11 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        redSquare.setColor(0xFFFF0000);
+        redSquare.setStyle(Paint.Style.FILL);
+        greenSquare.setColor(0xFF00FF00);
+        greenSquare.setStyle(Paint.Style.FILL);
+
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -128,9 +138,15 @@ public class CakeView extends SurfaceView {
 if(myCake.candlesThere == true) {
     for(int i = 1; i <= myCake.numCandles; i++){
         drawCandle(canvas, cakeLeft + 2 * i  * cakeWidth / 12 - candleWidth / 2, cakeTop);
-    }
-}
 
+
+    }
+
+}
+        canvas.drawRect(myCake.xCoor, myCake.yCoor - 50, myCake.xCoor +50, myCake.yCoor, redSquare);
+        canvas.drawRect(myCake.xCoor, myCake.yCoor + 50, myCake.xCoor + 50, myCake.yCoor, greenSquare);
+        canvas.drawRect(myCake.xCoor - 50, myCake.yCoor + 50, myCake.xCoor, myCake.yCoor, redSquare);
+        canvas.drawRect(myCake.xCoor - 50, myCake.yCoor - 50, myCake.xCoor, myCake.yCoor , greenSquare);
     }//onDraw
 
     public CakeModel getCakeModel(){

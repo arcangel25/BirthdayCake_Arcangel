@@ -1,13 +1,16 @@
 package cs301.birthdaycake;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
-public class CakeController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
+public class CakeController implements View.OnClickListener, View.OnTouchListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
     private CakeView aCakeView;
     private CakeModel aCakeModel;
+    private int xValue;
+    private int yValue;
 
     public CakeController(CakeView c){
         aCakeView = c;
@@ -44,5 +47,15 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        xValue = (int)motionEvent.getX();
+        yValue = (int)motionEvent.getY();
+        aCakeModel.xCoor = xValue;
+        aCakeModel.yCoor = yValue;
+        aCakeView.invalidate();
+        return false;
     }
 }

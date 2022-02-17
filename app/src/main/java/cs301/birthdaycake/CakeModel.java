@@ -5,4 +5,7 @@ public class CakeModel {
     public int numCandles = 2;
     public boolean cakeFrost = true;
     public boolean candlesThere = true;
+    public int xCoor;
+    public int yCoor;
+    public boolean drawSquares = true;
 }
